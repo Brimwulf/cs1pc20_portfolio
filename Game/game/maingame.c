@@ -76,15 +76,15 @@ void printRoomDescription(room* room) {
 }
 
 // Function to move the player to a random room except current
-void movePlayerToRandomRoom(player* player, room* rooms, int numRooms) {
-  int currentRoomIndex = player->currentRoom - rooms;
-  int randomIndex = currentRoomIndex;
-  while(randomIndex == currentRoomIndex) {
-    randomIndex = rand() % numRooms;
-  }
-  player->currentRoom = &rooms[randomIndex];
-  printRoomDescription(player->currentRoom);
-}
+//void movePlayerToRandomRoom(player* player, room* rooms, int numRooms) {
+  //int currentRoomIndex = player->currentRoom - rooms;
+  //int randomIndex = currentRoomIndex;
+  //while(randomIndex == currentRoomIndex) {
+    //randomIndex = rand() % numRooms;
+  //}
+  //player->currentRoom = &rooms[randomIndex];
+  //printRoomDescription(player->currentRoom);
+//}
 
 // Commenting out this function and replacing it with a function with error checks for now
 // Function to load encounters from the encounters.csv file
@@ -235,10 +235,10 @@ int getRoomChoice(room* currentRoom) {
 }
 
 // a function to move the player to another room, and describe it to the user
-//void movePlayer(player* player, int choice) {
-  //player->currentRoom = player->currentRoom->connections[choice-1].room2;
-  //printRoomDescription(player->currentRoom);
-//}
+void movePlayer(player* player, int choice) {
+  player->currentRoom = player->currentRoom->connections[choice-1].room2;
+  printRoomDescription(player->currentRoom);
+}
 
 // a function to load the rooms from a file
 // the file is called rooms.csv, and has a room name and room description on each line
