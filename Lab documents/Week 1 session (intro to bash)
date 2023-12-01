@@ -1,0 +1,33 @@
+This command creates a new directory, "portfolio/week1" and then the "cd" changed the active directory to the one just created.
+changes active directory back to the home directory.
+This command deletes everything in the "portfolio" directory.
+This command is similar to the first command. The difference is that it uses an "&" instead of a ";" which as far as Im aware will mean that the command before the & will run while it executes the command after. That would mean it made the directory, and then changed it to be the active one which explains why it did the same thing.
+Again changing to the home directory.
+And again deleting everything in portfolio.
+This one makes the directory again but the "&&" here is unique in that it only ran the second part of the command if the first part was successful. I.e. it made the directory and changed it to active only after making the directory was successful.
+Prints "Hello World"
+Prints Hello, World
+prints Hello, world but the next part I'm unsure about. I think "Foo bar" isn't a real command so it will not produce anything except an error message.
+The ; here returns a new line so the two echo messages should appear on different lines.
+This command should just print " Hello, world > readme" since that part of the command is encased in quotation marks and thus shouldn't do anything.
+the last part of this command is taken out of the quotation marks so it should do something now. The arrow should mean it prints the text and then saves it to a file named "readme". This command DOES produce the expected result.
+the cat (concatinate) displays what is stored in a file so it should just print the text that was just saved in it.
+Creates a variable called "example" and assigns it the string "Hello, World".
+prints the variable just made.
+should print the word $example rather than the string stored in the variable due to the presence of the quote marks.
+Same again with this one just different quote marks.
+Prints the string, and then on a new line it prompts the user and then saves the response in the example variable.
+prints Hello along with what's contained in example.
+This command should save the sum of 1+1+1 (3) in a variable named "three" and then print the variable. It didn't however, it just printed 1+1+1. I suppose that means that bash is not able to execute calculations on its own.
+I wasn't sure what this command was going to do, and when I entered it it returned what seemed like copyright information. Following the hint, I typed quit to exit out of the program. Since it's just given my copyright information I guessed that "bc" is a piece of programming that gives bash the ability to execute calculations in the command line (and maybe this software is proprietary hence the copyright)
+This time it should return the number 3. Like it says in the hints for the task the pipe symbol sends the command on the right and now we know that bc is a program. So the calculator programming is going to allow bash to compute 1+1+1.
+This command might output the word "date" or nothing since it's calling a variable that has no assigned value. It did indeed output the word "date" but I was slightly surprised by this. Since "date" is not surrounded by quotation marks I was sure it was going to output nothing since I thought it would consider date to be a variable and not output it as text.
+Like with bc I didn't know what cal would do. It outputted the calander for this with the current day higlihgted. I thought this was pretty neat :D.
+I was again unsure what this might do. It outputted usr/bin/cal and I didn't really know what this meant. I researched this output and found out that usr/bin is a place where linux stores executable commands so presumably it's answering the question "which calander am I using" by outputting the file path to the command executed.
+This command surpised me since at first I thought it would do the same thing as "which cal" but instead it did the same thing as "cal". Perhaps the $() executes whatever is in the file pathway called by which cal.
+This shouldn't do anything. At first I thought it might just return "which cal" because of the quotation marks. But then I realised theres no echo command either. It didn't work but not for the reason I thought. It returned the error which cal command not found which definitely confused me because without the quotation marks which cal works just fine. I researched why this is and the answer was quite interesting. which cal without the quotation marks is two seperate commands, "which" and "cal". However in quotation marks bash treats everything (including the quotation marks) as one command and thus is why it didn't recognise it as a valid command.
+Should print out the date is date since before the command just returned the word "date". It in fact did return the actual accurate date (along with "the date is"). If i had to guess why it was different this time, it could be the addition of the brackets this time. I researched the $(...) part more and found out that bash executes the command within the parenthesis and then and stores the ouput. So the command is adding the output for date to the text.
+Should print all the values from 0 to 9
+Counts how many values are in the range from 0 to 9 (10) and then lists.
+writes the sequence 0 to 9 into the sequence file.
+This command was supposed to take the value of sequence and feed it into the wc -l command hence the use of the "<" symbol and should have outputted the value 10. However when I typed it in, I accidentally put the ">" symbol so instead of sequence feeding to wc -l, the opposite occured. So the bash command line took an input from me and allowed me to write into the file any amount of text on any amount of lines, counted the number of lines I wrote and then fed that into sequence. I wrote about 5 lines before I realised what I'd done wrong and exited the command so when I typed in cat sequence it outputted the number 5. After typing it correctly, it fed the sequence file into the wc -l command which counts how many lines are in sequence of which there were 10 for 0 to 9.
