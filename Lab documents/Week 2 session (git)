@@ -1,0 +1,50 @@
+"cd ~" moves to the home directory. A nice easy start.
+Creates a git repository called portfolio
+moves to the newly created portfolio directory
+lists everything in the portfolio directory. Currently theres the git file, and week1 file.
+git status prints any changes made to the git repository that is yet to be committed. Currently the only change yet to be committed is that week1 is not being tracked. I would guess this is because the week1 file was created before I made the git repository. Just to remind myself what was in week1, I typed cat week1 and found that it wasnt a file but a directory (this makes sense and I forgot this was the case). I then typed ls -al to list what was in week1 and naturally it contained all the files I created in the last lab session. I'll commit this directory if I am not asked to later on in the task. For now though I moved on to the next command.
+echo should just print whatever I type next to it. The addition of the > symbol however means that it will put whatever I type into the .gitignore file. I somewhat apprehensively typed cat .gitignore to see what was in the file hoping it wouldn't break everything but I found it just said "hello" in it which means my prediction was correct!
+I'm not too sure what this command is going to do. I think it will add something to the git repository, but I'm not yet sure what "-A" means. Upon researching, I found out that -A means that it is going to add all changes to the git repository, including existing files. So that means week1 should be added. I typed in git status and sure enough the week1 directory including the files in it have been added to the repository.
+I already did this step, getting ahead of myself!
+The next two commands will configure git to communicate with CSgitlab (I think). What this does is I'm adding my student email and name to the git config. I recieved an error saying git is not a command, but this was my fault, I typed "git" in twice. Having fixed this, the command went through just fine.
+Again, just changing the config to add my email and name.
+The first commit! This command should commit my changes above (i.e. adding the week 1 content) and the commit message describing what change I made. It returned a messages detailing everything that was committed.
+Checking the git status again, shows me that there is nothing to commit and the working branch is clean.
+I do not know what this command will do. Judging by the error message given, I assume it cannot put my changes anywhere because I haven't specified where I want the remote repository to be.
+This command seems to be linking in to my CSgitlab portfolio. Didn't seem to return any error messages so I really hope this worked.
+Again mostly unsure what this command will do. Typed it in the first time and recieved an error (I put one dash instead of two). After typing it in properly, I got another error stating it could not access the url because of security so I am following the workaround on blackboard. Thankfully, this seemed to work and it asks me for a username. After typing in username + password it displayed a bunch of text that essentially summarised said that it looked for files and such, compressed them and stuff and then created a remote repository (lovely) and then detailed how to configure and get to the repository on the interwebz. It also created a branch master.
+checking git status again, working branch clean (lovely again)
+I typed in a similar command earlier. writes the text into the file readme.md. Did a quick cat readme.md to check what was in it and the text was there.
+this command adds the readme.md file to the repository.
+This one commits it.
+And this one puts the changes on the CSgitlab repo. It asked for my username + password again which I thought was odd but after it seemed to work fine. I checked the CSgitlab website and found that the readme file was all there and contained the text I typed in (very very cool)
+On the task document it mentions that the next few commands are going to make it so that I dont need to type in my username+password each time I push so I think this first command here is changing something within the git config file. It didnt return anything so I'm not totally sure what it did exactly. EDIT: having read the text again I think that the command just saves the last username and password I typed in to the cache.
+Creates a branch called week2
+Switches to the week2 branch
+Creates a directory called week2
+Once again, writes some text into the week2/report.md file. The difference here though is it specifies the directory I want to place the file in. I actually wasn't aware you could do that until now but it does make sense.
+Checks the status of the git repository
+Adds the week2 directory
+commits it (with the message explaining what the commit is of course)
+and then pushes it to the website. It returned an error message saying that the week2 branch has no upstream branch. So I typed git push --set-upstream origin week2 to give it an upstream branch. It asked for my username+password again so I guess the earlier command didn't work. I should look into this but since my battery is getting low I decided to press on. I quickly checked the website again and the branch was there with the report.md file (including the text I put in it)
+Moves to the master branch
+Lists everything in this branch
+Moves back to the week2 branch
+And lists everything again.
+Moving back to master branch
+We're merging week2 with this command. When I typed in the command to set an upstream branch, it the terminal said in order to make a merge request go to the website. I'm not yet sure what merging means exactly though.
+Judging by what it said after I typed the ls -al command, I think what the merge did was just put week2 onto the master branch. 
+Pushes the change again. Sure enough, the week2 folder now appears on the master branch so my observation was correct.
+The next two commands are asking me to remove the week2 and week1 directories. When I first read this I thought it must be joking but then I read ahead and it seems that this is going to be an example of how to get rid of any changes made before committing it to the git repository. I really hope this is the case and if it is not I may shed a solitary tear.
+Again removing the other directory.
+After listing the contents of the home directory, week1 and week2 is gone as expected.
+The git status shows that the week1 and week2 directories have been deleted.
+I'm not sure what git stash might do since I don't know what the stash is. After executing the command it seems that git stash saves the working directory.
+My first assumption is that git stash drop deletes anything in the git stash.
+After having typed in ls -al thankfully week1 and week2 is back. So this means that git stash drop seems to undo any changes to the git repository.
+Moving back to home directory.
+This could be doing one of two things. The "-r" makes me think that its removing something from "cp" but Im not sure what cp is exactly. I researched the command a bit and it turns out I was wrong (and also while typing this I remembered exactly what -r does and that it does not remove anything because that's the "rm" command). The "-r" just means that it recursively does the command which in this case is cp. cp stands for copy so the command "recursively" "copies" the portfolio directory into a directory called portfolio_backup.
+I had to read up on what the "-rf" does here. The command is removing the portfolio directory and the -rf means to forcibly and recursively remove. Forcibly in this case means to ignore any prompts that come up from executing the command.
+listing everything in the directory again. Predictably, the portfolio directory is gone but luckily the portfolio backup still exists.
+I think this command is going to clone the portfolio directory from the CSgitlab repo into the home directory.
+And sure enough after typing in ls -al the portfolio directory is back. Just to be absolutely sure I typed in cd portfolio to move to the newly cloned portfolio directory, and then typed ls -al again to check its all still there and it was.
