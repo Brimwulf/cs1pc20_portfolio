@@ -31,3 +31,9 @@ Should print all the values from 0 to 9
 Counts how many values are in the range from 0 to 9 (10) and then lists.
 writes the sequence 0 to 9 into the sequence file.
 This command was supposed to take the value of sequence and feed it into the wc -l command hence the use of the "<" symbol and should have outputted the value 10. However when I typed it in, I accidentally put the ">" symbol so instead of sequence feeding to wc -l, the opposite occured. So the bash command line took an input from me and allowed me to write into the file any amount of text on any amount of lines, counted the number of lines I wrote and then fed that into sequence. I wrote about 5 lines before I realised what I'd done wrong and exited the command so when I typed in cat sequence it outputted the number 5. After typing it correctly, it fed the sequence file into the wc -l command which counts how many lines are in sequence of which there were 10 for 0 to 9.
+This command outputs the sequence of 0 to 9
+This command pipes the sequence of 0 to 9 added to 0 to the bc (calculator)
+This line writes out a short "hello world" code in c and then feeds it into the hello.c file.
+This line prints out what's in the hello.c file.
+And then this line compiles the hello.c file to create an executable.
+And lastly this line runs the executable.
