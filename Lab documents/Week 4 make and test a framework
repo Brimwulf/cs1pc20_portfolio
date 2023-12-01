@@ -1,0 +1,18 @@
+cd'ing into the home directory
+Then into portfolio
+Switching on to the master branch
+making a directory called framework with a parent directory (-p) called week4
+And then cd'ing into the newly created directory
+Now we're creating a new git branch called framework.
+And then switching to that branch.
+In this line we're creating a makefile. From reading what is supposed to be written into this file I guessed that the purpose of this makefile is to act as a sort of "script" that the bash command line can execute. The first two lines after "feature:" seem to create a directory and then cd into it. After this, the && flag tells the command line that after making that directory we want to make six more directories called bin, doc, src, test, lib and config. Then the last two lines put "*" into the .gitignore files in the bin and lib directories. The first time when I typed this all out I put "<tab>" instead of the tab character so I had to go back and fix this.
+Here we're using the cat command to see what is in the Makefile with the flag -vTE which specifies the output should be in text form and to interpret the backslashes as the end of each line.
+This line allows us to use the makefile and we're specifying that where it says NAME in the makefile, the name should be test_output.
+Then we're asking the command line to list what's in the directory test_output and sure enough the six directories we listed in the makefile are there so the makefile worked as expected.
+Then the next three lines adds the makefile to my git repository and pushes it to CSgitlab.
+
+This was a large file compared to everything else so far but essentialy it opens a file and uses while loops to cycle through the lines within the file and tests the outputs are what they should be. The first time I compiled there were quite a few errors but they were mostly due to not typing out the file the first time. After adding a few semicolons and curly brackets and other syntax in the right places, each error was fixed.
+This line compiles the file we just wrote.
+I think running the executable in this way will return an error since the file that the pointers point to in the code isn't actually a real file that exists so the code shouldn't work. Indeed, the error returned says "no such file or directory".
+This should also return an error since we're not specifying a file for our code to read. This also returned the same error as the last and I would guess this could be that since where we would put a file name we have put nothing the pointers are pointing to a file called " " when the code runs. After some research it's because the file is trying to open a file with an unspecified name which is close to what I thought since I thought the name would just be blank.
+It seems like this file we've just created contains a few lines of commands that will be fed into the c code. 
