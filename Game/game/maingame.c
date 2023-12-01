@@ -144,7 +144,7 @@ encounter* loadEncounters(int numRooms) {
 
     int armorClass;
     // Get the armorClass directly after the second quotation mark
-    char* armorClassStr = strtok(NULL, ",");
+    char* armorClassStr = strtok(NULL, "\", ");
     if (armorClassStr == NULL || sscanf(armorClassStr, "%d", &armorClass) != 1) {
       printf("Parsing armor class failed in line %d\n", i + 1);
       break;  // or handle as appropriate
@@ -175,7 +175,7 @@ void handleEncounter(player* player, encounter* encounter, room* rooms, int numR
     printf("What would you like to do?\n");
     printf("1. Attack\n");
     printf("2. Check\n");
-    printf("3. Flee\n");
+    //printf("3. Flee\n");
     scanf("%d", &choice);
     switch(choice) {
       case 1: { // Attack option
@@ -187,7 +187,7 @@ void handleEncounter(player* player, encounter* encounter, room* rooms, int numR
           encounterComplete = true;
         } else {
           printf("Your attack missed and you are forced to flee!\n");
-          movePlayerToRandomRoom(player, rooms, numRooms);
+          //movePlayerToRandomRoom(player, rooms, numRooms);
           encounterComplete = true;
         }
         break;
@@ -196,12 +196,13 @@ void handleEncounter(player* player, encounter* encounter, room* rooms, int numR
         printf("You check the %s\n", encounter->creature);
         printf("The armor class of the %s is %d\n", encounter->creature, encounter->armorClass);
         break;
-      case 3: // Flee option
-        printf("You flee from the %s\n", encounter->creature);
-        printf("You flee to a random room.\n");
-        movePlayerToRandomRoom(player, rooms, numRooms);
-        encounterComplete = true;
-        break;
+      //case 3: // Flee option
+        //printf("You flee from the %s\n", encounter->creature);
+        //printf("You flee to a random room.\n");
+        //movePlayerToRandomRoom(player, rooms, numRooms);
+        //encounterComplete = true;
+        //break;
+      //commenting this out because when choosing the flee option it seems to stop the code rather than moving to a random room.
       default:
         printf("Invalid choice, please try again\n");
     }
@@ -234,10 +235,10 @@ int getRoomChoice(room* currentRoom) {
 }
 
 // a function to move the player to another room, and describe it to the user
-void movePlayer(player* player, int choice) {
-  player->currentRoom = player->currentRoom->connections[choice-1].room2;
-  printRoomDescription(player->currentRoom);
-}
+//void movePlayer(player* player, int choice) {
+  //player->currentRoom = player->currentRoom->connections[choice-1].room2;
+  //printRoomDescription(player->currentRoom);
+//}
 
 // a function to load the rooms from a file
 // the file is called rooms.csv, and has a room name and room description on each line
