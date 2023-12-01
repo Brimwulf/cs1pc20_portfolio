@@ -17,4 +17,4 @@ I think running the executable in this way will return an error since the file t
 This should also return an error since we're not specifying a file for our code to read. This also returned the same error as the last and I would guess this could be that since where we would put a file name we have put nothing the pointers are pointing to a file called " " when the code runs. After some research it's because the file is trying to open a file with an unspecified name which is close to what I thought since I thought the name would just be blank.
 It seems like this file we've just created contains a few lines of commands that will be fed into the c code. 
 This will run the test_outputs executable using the op_test file.
-The last 4 lines add the changes to git.
+The last 4 lines add, commit and push the changes to git.
