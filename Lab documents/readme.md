@@ -1,1 +1,1 @@
-This directory contains the markdown file for the lab sessions.
+This directory contains the markdown files for the lab sessions.
