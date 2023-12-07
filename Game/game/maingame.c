@@ -76,43 +76,15 @@ void printRoomDescription(room* room) {
 }
 
 // Function to move the player to a random room except current
-//void movePlayerToRandomRoom(player* player, room* rooms, int numRooms) {
-  //int currentRoomIndex = player->currentRoom - rooms;
-  //int randomIndex = currentRoomIndex;
-  //while(randomIndex == currentRoomIndex) {
-    //randomIndex = rand() % numRooms;
-  //}
-  //player->currentRoom = &rooms[randomIndex];
-  //printRoomDescription(player->currentRoom);
-//}
-
-// Commenting out this function and replacing it with a function with error checks for now
-// Function to load encounters from the encounters.csv file
-//encounter* loadEncounters(int numRooms) {
-  //encounter* encounters = malloc(sizeof(encounter) * numRooms);
-  //FILE* file = fopen("encounters.csv", "r");
-  //if (file == NULL) {
-    //printf("Error opening encounters file\n");
-    //exit(1);
-  //}
-  //char line[500];
-  //for (int i = 0; i < numRooms; i++) {
-    //fgets(line, sizeof(line), file);
-    // Parsing the csv line and storing the values
-    //char* creature = strtok(line, "\",\"");
-    //char* description = strtok(NULL, "\",\"");
-    //int armorClass;
-    //sscanf(strtok(NULL, ","), "%d", &armorClass);
-    // Storing the encounter details
-    //encounters[i].creature = malloc(strlen(creature) + 1);
-    //strcpy(encounters[i].creature, creature);
-    //encounters[i].description = malloc(strlen(description) + 1);
-    //strcpy(encounters[i].description, description);
-    //encounters[i].armorClass = armorClass;
-  //}
-  //fclose(file);
-  //return encounters;
-//}
+void movePlayerToRandomRoom(player* player, room* rooms, int numRooms) {
+  int currentRoomIndex = player->currentRoom - rooms;
+  int randomIndex = currentRoomIndex;
+  while(randomIndex == currentRoomIndex) {
+    randomIndex = rand() % numRooms;
+  }
+  player->currentRoom = &rooms[randomIndex];
+  printRoomDescription(player->currentRoom);
+}
 
 encounter* loadEncounters(int numRooms) {
   encounter* encounters = malloc(sizeof(encounter) * numRooms);
@@ -134,27 +106,31 @@ encounter* loadEncounters(int numRooms) {
       break;  // can also exit if this is considered fatal
     }
 
-    // Skip leading quotation mark
-    char* creature = strtok(line, "\",\"");
-    char* description = strtok(NULL, "\",\"");
-    if (creature == NULL || description == NULL) {
-      printf("Parsing error in line %d\n", i + 1);
-      break;  // or handle the error as appropriate
-    }
-
+    char creature[50];
+    char description[200];
     int armorClass;
-    // Get the armorClass directly after the second quotation mark
-    char* armorClassStr = strtok(NULL, "\", ");
-    if (armorClassStr == NULL || sscanf(armorClassStr, "%d", &armorClass) != 1) {
-      printf("Parsing armor class failed in line %d\n", i + 1);
-      break;  // or handle as appropriate
-    }
-
+    fscanf(file, "\"%[^\"]\", \"%[^\"]\", %d\n" , creature, description, &armorClass);
+    
+    //if (creature == NULL || description == NULL) {
+      //printf("Parsing error in line %d\n", i + 1);
+      //break;  // or handle the error as appropriate
+    //}
+    
+    //if (armorClassStr == NULL || sscanf(armorClassStr, "%d", &armorClass) != 1) {
+      //printf("Parsing armor class failed in line %d\n", i + 1);
+      //break;  // or handle as appropriate
+    //}
+    
+    //printf("whole line: %s\n", line);
+    //printf("Creature: %s\n", creature);
+    //printf("Description: %s\n", description);
+    //printf("Armor Class: %d\n", armorClass);
+    
     // Allocate memory and store the encounter details, skipping quotation marks
     encounters[i].creature = malloc(strlen(creature) + 1);
     encounters[i].description = malloc(strlen(description) + 1);
     if (encounters[i].creature == NULL || encounters[i].description == NULL) {
-      printf("Memory allocation failed for encounter details in line %d\n", i + 1);
+      printf("Memory allocation failed for encounter details in line %d\n", i + 2);
       break;  // handle memory allocation failure
     }
     strcpy(encounters[i].creature, creature);
@@ -165,6 +141,8 @@ encounter* loadEncounters(int numRooms) {
   fclose(file);
   return encounters;
 }
+
+
 
 // Function to handle an encounter
 void handleEncounter(player* player, encounter* encounter, room* rooms, int numRooms) {
@@ -303,7 +281,7 @@ room* loadRooms() {
 
   // we need to create a maze like set of connections between the rooms
   // we need to loop through the rooms
-  //let's pick a number between 1 and 3 for the number of connections for each room
+  // let's pick a number between 1 and 3 for the number of connections for each room
   srand(time(NULL));
   // ... previous code remains unchanged ...
   // we need to create a maze like set of connections between the rooms
@@ -322,7 +300,7 @@ room* loadRooms() {
     // Assume the CSV is formatted as: roomIndex,roomIndex,roomIndex where each roomIndex is an int
     int connectionIndices[3]; // since we're expecting 3 connections per room
     sscanf(connectionsLine, "%d,%d,%d", &connectionIndices[0], &connectionIndices[1], &connectionIndices[2]);
-    rooms[currentRoomIndex].connections = realloc(rooms[currentRoomIndex].connections, sizeof(connection) * 3);
+    rooms[currentRoomIndex].connections = realloc(rooms[currentRoomIndex].connections,     sizeof(connection) * 3);
     for (int j = 0; j < 3; j++) {
       rooms[currentRoomIndex].connections[j].room1 = &rooms[currentRoomIndex];
       rooms[currentRoomIndex].connections[j].room2 = &rooms[connectionIndices[j]];
@@ -367,8 +345,8 @@ void playGame() {
   // we need to create the game
   printf("Welcome to the game\n");
   game* game = createGame();
-  encounter* encounters = loadEncounters(game->numRooms); //There seems to be a problem with this function.
-  // srand(time(NULL));
+  encounter* encounters = loadEncounters(game->numRooms);
+
   // we need to print the room description
   printRoomDescription(game->player->currentRoom);
   // we need to loop until the user quits
